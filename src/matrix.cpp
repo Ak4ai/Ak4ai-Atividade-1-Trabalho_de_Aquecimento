@@ -54,13 +54,13 @@ void Matrix::printHistory(const std::string& fileName) {
     std::ofstream outFile(fileName, std::ios::app); // Abre o arquivo para escrita
 
     if (outFile.is_open()) {
-            outFile << rows << " " << columns << std::endl; // Grava as dimensões no arquivo
+            outFile << rows << " " << columns << std::endl; // Grava as dimensï¿½es no arquivo
 
             for (int i = 0; i < rows; ++i) {
                 for (int j = 0; j < columns; ++j) {
                     outFile << data[i][j] << " ";  // Grava no arquivo
                 }
-                outFile << std::endl;  // Pula para a próxima linha no arquivo
+                outFile << std::endl;  // Pula para a prï¿½xima linha no arquivo
             }
 
         outFile.close(); // Fecha o arquivo
@@ -71,20 +71,20 @@ void Matrix::printHistory(const std::string& fileName) {
 }
 
 
-// Adicione a função JogoDaVida na classe Matrix
+// Adicione a funï¿½ï¿½o JogoDaVida na classe Matrix
 void Matrix::JogoDaVida() {
-    // Criar uma cópia temporária da matriz para as alterações
+    // Criar uma cï¿½pia temporï¿½ria da matriz para as alteraï¿½ï¿½es
     int** tempData = new int* [rows];
     for (int i = 0; i < rows; ++i) {
         tempData[i] = new int[columns];
     }
 
-    // Calcular a próxima geração com base nas regras do Jogo da Vida
+    // Calcular a prï¿½xima geraï¿½ï¿½o com base nas regras do Jogo da Vida
     for (int i = 0; i < rows; ++i) {
         for (int j = 0; j < columns; ++j) {
             int aliveNeighbors = 0;
 
-            // Contar o número de vizinhos vivos
+            // Contar o nï¿½mero de vizinhos vivos
             for (int k = -1; k < 2; ++k) {
                 for (int l = -1; l < 2; ++l) {
                     if (i + k >= 0 && i + k < rows && j + l >= 0 && j + l < columns) {
@@ -93,13 +93,13 @@ void Matrix::JogoDaVida() {
                 }
             }
 
-            // Ajustar o número de vizinhos, pois a célula atual foi contada
+            // Ajustar o nï¿½mero de vizinhos, pois a cï¿½lula atual foi contada
             aliveNeighbors -= data[i][j];
 
             // Aplicar as regras do Jogo da Vida
             if (data[i][j] == 1) {
                 if (aliveNeighbors < 2 || aliveNeighbors > 3) {
-                    tempData[i][j] = 0; // Solidão ou superpopulação
+                    tempData[i][j] = 0; // Solidï¿½o ou superpopulaï¿½ï¿½o
                 }
                 else {
                     tempData[i][j] = 1; // Sobrevive
@@ -107,7 +107,7 @@ void Matrix::JogoDaVida() {
             }
             else {
                 if (aliveNeighbors == 3) {
-                    tempData[i][j] = 1; // Reprodução
+                    tempData[i][j] = 1; // Reproduï¿½ï¿½o
                 }
                 else {
                     tempData[i][j] = 0; // Permanece morta
@@ -116,16 +116,35 @@ void Matrix::JogoDaVida() {
         }
     }
 
-    // Atualizar a matriz original com a nova geração
+    // Atualizar a matriz original com a nova geraï¿½ï¿½o
     for (int i = 0; i < rows; ++i) {
         for (int j = 0; j < columns; ++j) {
             data[i][j] = tempData[i][j];
         }
     }
 
-    // Liberar a memória da matriz temporária
+    // Liberar a memï¿½ria da matriz temporï¿½ria
     for (int i = 0; i < rows; ++i) {
         delete[] tempData[i];
     }
     delete[] tempData;
+}
+void Matrix::run(){
+    int escolha;
+    Matrix myMatrix;
+    myMatrix.readFromFile("datasets/input.txt");
+    std::ofstream("datasets/history.txt", std::ios::trunc).close();
+    myMatrix.printHistory("datasets/history.txt");
+
+
+    std::cout << "Escolha o numero de iteraï¿½ï¿½es: ";
+    std::cin >> escolha;
+
+    for (int i = 0; i < escolha; ++i) {
+        myMatrix.JogoDaVida();
+        myMatrix.printHistory("datasets/history.txt");
+    }
+
+    myMatrix.printEntireHistory("datasets/history.txt");
+
 }

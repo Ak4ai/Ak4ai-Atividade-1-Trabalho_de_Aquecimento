@@ -16,6 +16,7 @@ public:
     void printEntireHistory(const std::string& fileName);
     void printHistory(const std::string& fileName);
     void JogoDaVida();
+    void run();
 };
 
 #endif // MATRIX_HPP

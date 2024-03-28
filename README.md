@@ -7,10 +7,12 @@ Este programa implementa uma simulação do famoso "Jogo da Vida" idealizado por
 <p align="justify">
 Este jogo tornou-se amplamente conhecido quando foi mencionado num artigo publicado pela Scientific American em 1970. Consiste numa grelha de células que, com base em algumas regras matemáticas, podem viver, morrer ou multiplicar-se. Dependendo das condições iniciais, as células formam vários padrões ao longo do jogo.
 </p>
-<center>
- ![giphy](https://github.com/Ak4ai/Ak4ai-Atividade-1-Trabalho_de_Aquecimento/assets/129908980/eb4f698b-6bfc-4e52-862b-73884ca2216e)
-</center>
 
+<p align="center">
+  <img src="https://github.com/Ak4ai/Ak4ai-Atividade-1-Trabalho_de_Aquecimento/assets/129908980/68c8d7b9-f618-44de-b1cf-334b67400e31">
+</p>
+
+ 
 ## Regras
   <p>O Jogo da Vida é um autômato celular criado por John Horton Conway em 1970. O jogo é simples, mas pode gerar comportamentos complexos e emergentes.</p>
 

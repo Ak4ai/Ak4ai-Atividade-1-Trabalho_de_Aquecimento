@@ -1,44 +1,136 @@
-# Atividade I: Trabalho de aquecimento 31/03/2024
- O Jogo da Vida é um autômato celular que evolui de acordo com regras simples, mas gera padrões complexos. Ele é representado por uma matriz 2D de células, cada uma podendo estar viva ou morta.
+<h1 align="center"><b>Simulação do Jogo da Vida de Conway</b></h1>
 
-# Jogo da Vida - Matriz em C++
+## Introdução
+<p align="justify">
+Este programa implementa uma simulação do famoso "Jogo da Vida" idealizado por John Conway em 1970. O jogo consiste em uma matriz de células, cada uma podendo estar em um de dois estados: vivo ou morto. A evolução das células segue regras simples, determinadas pelo número de células vizinhas vivas de cada célula, que determinam se uma célula continua viva, morre ou se uma célula morta se torna viva.
+</p>
+<p align="justify">
+Este jogo tornou-se amplamente conhecido quando foi mencionado num artigo publicado pela Scientific American em 1970. Consiste numa grelha de células que, com base em algumas regras matemáticas, podem viver, morrer ou multiplicar-se. Dependendo das condições iniciais, as células formam vários padrões ao longo do jogo.
+</p>
 
-## Descrição
+<p align="center">
+  <img src="https://github.com/Ak4ai/Ak4ai-Atividade-1-Trabalho_de_Aquecimento/assets/129908980/68c8d7b9-f618-44de-b1cf-334b67400e31">
+</p>
 
-Este script em C++ implementa uma classe `Matrix` que representa uma matriz bidimensional. A classe oferece funcionalidades para ler de um arquivo, imprimir o histórico da matriz, adicionar ao histórico e aplicar as regras do Jogo da Vida de Conway.
+ 
+## Regras
+  <p>O Jogo da Vida é um autômato celular criado por John Horton Conway em 1970. O jogo é simples, mas pode gerar comportamentos complexos e emergentes.</p>
 
-O Jogo da Vida é um autômato celular que segue regras simples e produz padrões complexos a partir de interações entre células vizinhas.
+  <h3>Para um espaço que está povoado:</h3>
 
-## Funções Principais
+  <table>
+    <tr>
+      <th>Vizinhos</th>
+      <th>Resultado</th>
+    </tr>
+    <tr>
+      <td>0 ou 1</td>
+      <td>Morre (suicídio)</td>
+    </tr>
+    <tr>
+      <td>2 ou 3</td>
+      <td>Sobrevive</td>
+    </tr>
+    <tr>
+      <td>4 ou mais</td>
+      <td>Morre (superpopulação)</td>
+    </tr>
+  </table>
 
-### `readFromFile(const std::string& fileName)`
+  <h3>Para um espaço que está vazio ou despovoado:</h3>
 
-Lê as dimensões e os elementos da matriz de um arquivo.
+  <table>
+    <tr>
+      <th>Vizinhos</th>
+      <th>Resultado</th>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td>Torna-se povoada</td>
+    </tr>
+  </table>
 
-### `printEntireHistory(const std::string& fileName)`
+  <h2>Exemplos</h2>
 
-Imprime todo o histórico da matriz a partir de um arquivo.
+  <table>
+    <tr>
+      <th>Estado Atual</th>
+      <th>Próxima Geração</th>
+    </tr>
+    <tr>
+      <td>Célula com 1 vizinho</td>
+      <td>Morre</td>
+    </tr>
+    <tr>
+      <td>Célula com 2 vizinhos</td>
+      <td>Sobrevive</td>
+    </tr>
+    <tr>
+      <td>Célula com 3 vizinhos</td>
+      <td>Sobrevive</td>
+    </tr>
+    <tr>
+      <td>Célula com 4 vizinhos</td>
+      <td>Morre</td>
+    </tr>
+    <tr>
+      <td>Célula vazia com 3 vizinhos</td>
+      <td>Torna-se povoada</td>
+    </tr>
+  </table>
+</body>
+</html>
 
-### `printHistory(const std::string& fileName)`
+ 
+## Objetivos
+<p align="justify">
+O objetivo deste projeto é criar um sistema que simule o Jogo da Vida em uma matriz bidimensional, permitindo a visualização da evolução das células ao longo do tempo através de um arquivo de texto. O usuário pode definir o tamanho da matriz, os elementos iniciais e a quantidade de gerações desejadas.
+</p>
 
-Adiciona a configuração atual da matriz ao histórico em um arquivo.
+## Funcionalidades
+- O programa lê a matriz inicial de um arquivo de texto.
+- Implementa as regras do Jogo da Vida para calcular as próximas gerações.
+- Registra cada geração em um arquivo de texto.
+- Permite ao usuário definir o número de iterações desejado.
 
-### `JogoDaVida()`
+## Arquivos
+### Dataset
+- `input.txt`: Contém a matriz inicial junto com seu tamanho.
+- `history.txt`: Registra as gerações geradas.
 
-Aplica as regras do Jogo da Vida de Conway à matriz.
+### Código-fonte
+- `matrix.hpp`: Contém o cabeçalho da classe Matrix.
+- `matrix.cpp`: Implementa as funções da classe Matrix.
+- `main.cpp`: Arquivo principal.
 
-## Uso
+## Compilação e Execução
+* | Comando           | Função                           |                     
+  | ------------------| -------------------------------- |
+  | `make clean`      | Apaga a última compilação.       |
+  | `make`            | Compila o programa.              |
+  | `make run`        | Executa o programa compilado.    |
 
-1. Compile e execute o script em um ambiente C++.
-2. Utilize as funções da classe `Matrix` para ler de arquivos, imprimir o histórico e aplicar o Jogo da Vida.
+## Funcionamento do Código
+<p align="justify">
+O código utiliza a classe `Matrix` para representar e manipular a matriz do Jogo da Vida. A função `JogoDaVida` implementa as regras do jogo e calcula a próxima geração. O método `run` executa o jogo, permitindo ao usuário definir o número de iterações desejado e registrando cada geração no arquivo de histórico.
+</p>
 
-```cpp
-int main() {
-    // Exemplo de uso
-    Matrix matrix;
-    matrix.readFromFile("input.txt");
-    matrix.JogoDaVida();
-    matrix.printHistory("output.txt");
+## Testes
+<p align="justify">
+Foram realizados testes com matrizes de diferentes tamanhos para verificar o comportamento do programa. Os resultados mostraram a evolução das células ao longo das gerações, demonstrando padrões característicos do Jogo da Vida, como formações estáveis e oscilantes.
+</p>
 
-    return 0;
-}
+## Conclusão
+<p align="justify">
+O Jogo da Vida de Conway é uma demonstração fascinante de como padrões complexos podem surgir a partir de regras simples. Além de ser uma ferramenta interessante para explorar conceitos de auto-organização e emergência na ciência computacional.
+</p>
+
+## Contato
+<div>
+<a style="color:black" href="mailto:jprs1308@gmail.com?subject=[GitHub]%20Source%20Dynamic%20Lists">
+✉️ <i>jprs1308@gmail.com</i>
+</a>
+</div>
+
+## Referências
+- Jogo da vida. In: WIKIPÉDIA: a enciclopédia livre. Flórida: Wikimedia Foundation, 2022. Disponível em: [https://pt.wikipedia.org/wiki/Jogo_da_vida](https://pt.wikipedia.org/wiki/Jogo_da_vida). Acesso em: 15 mar. 2024.

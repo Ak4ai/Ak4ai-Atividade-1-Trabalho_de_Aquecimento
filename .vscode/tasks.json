@@ -4,8 +4,11 @@
         {
             "label": "Run-Code",
             "type": "shell",
-            "command": "make clean && make && make run",
-            "group": "build"
+            "command": "mingw32-make clean ; mingw32-make ; mingw32-make run",
+            "group": "build",
+            "windows": {
+                "command": "mingw32-make clean ; mingw32-make ; mingw32-make run"
+            }
         }
     ]
 }
